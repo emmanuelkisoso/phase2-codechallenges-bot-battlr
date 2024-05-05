@@ -1,37 +1,52 @@
-import './App.css';
-import React ,{ useState } from 'react';
+// App.jsx
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BotCollection from './components/BotCollection';
 import YourBotArmy from './components/YourBotArmy';
-
+import BotSpecs from './components/BotSpecs';
 
 function App() {
-  const [ listedBots,setListedBots ] =useState([])
-  const [ releasedBots,setReleasedBots ] =useState([])
+  const [allBots, setAllBots] = useState([]);
+  const [enlistedBots, setEnlistedBots] = useState([]);
 
-  const handleBotClick = (botData) =>{
-    const existingBot = listedBots.find(bot => bot.id === botData.id);
-    if (!existingBot) {
-      setListedBots((prevBots) => [...prevBots, botData])
-    }
-  }
+  useEffect(() => {
+    const fetchBots = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/bots');
+        if (!response.ok) {
+          throw new Error('Failed to fetch bot data');
+        }
+        const data = await response.json();
+        setAllBots(data);
+      } catch (error) {
+        console.error('Error fetching bot data:', error);
+      }
+    };
 
-  const handleBotRelease = (botData) =>{
-    setReleasedBots((prevBots) =>[...prevBots,botData])
-    setListedBots((prevBots) => prevBots.filter( (bot) => bot.id !== botData.id))
-  }
+    fetchBots();
+  }, []);
 
+  const handleBotEnlist = (bot) => {
+    setEnlistedBots((prevEnlistedBots) => [bot, ...prevEnlistedBots]);
+  };
 
   return (
-    <div>
-      <div className="bot-area">
-        {listedBots.map((bot) =>(
-          <div key={bot.id}>{bot.name}</div>
-        ))}
-      </div>
-      <BotCollection bots={releasedBots} onClick={(bot) => handleBotClick(bot)} onRelease={(bot) => handleBotRelease(bot)}/>
-      <YourBotArmy listedBots={listedBots} onRelease={(bot) => handleBotRelease(bot)}/>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/bots/:botId" element={<BotSpecs onBotEnlist={handleBotEnlist} />} />
+        <Route path="/" element={<MainPage />} />
+      </Routes>
+    </Router>
   );
+
+  function MainPage() {
+    return (
+      <div className="container">
+        <YourBotArmy bots={enlistedBots} />
+        <BotCollection bots={allBots} onBotEnlist={handleBotEnlist} /> {/* Pass onBotEnlist */}
+      </div>
+    );
+  }
 }
 
 export default App;
