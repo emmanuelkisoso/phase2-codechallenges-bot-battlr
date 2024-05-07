@@ -59,6 +59,18 @@ function App() {
     setAllBots(originalAllBotsState)
   }
 
+  const handleBotDelete = (bot) => {
+    fetch(`http://localhost:3000/bots/${bot.id}`, {
+      method:'DELETE',
+    })
+    .then(res => res.json())
+    .then( ()=> handleDelete(bot.id))
+  }
+
+  function handleDelete(id) {
+    setAllBots(allBots.filter(item  => item.id !== id))
+    setEnlistedBots(enlistedBots.filter(item  => item.id !== id))
+  }
   // Render component
   return (
     <Router>
@@ -78,7 +90,7 @@ function App() {
         {/* Component for sorting the bot collection */}
         <SortBar onSort={handleSort} onRemoveSort={handleRemoveSort}/>
         {/* Component to display enlisted bots */}
-        <YourBotArmy bots={enlistedBots} />
+        <YourBotArmy bots={enlistedBots} onBotDelete={handleBotDelete}/>
         {/* Component to display the collection of all bots */}
         <BotCollection bots={allBots} onBotEnlist={handleBotEnlist} /> {/* Pass onBotEnlist */}
       </div>
