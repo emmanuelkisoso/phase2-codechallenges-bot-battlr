@@ -1,19 +1,41 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+// BotCollection.jsx
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import FilterBar from './FilterBar';
 
-// Functional component for displaying a collection of bots
 const BotCollection = ({ bots }) => {
-  // If there are no bots or the bots array is empty, display a message
-  if (!bots || bots.length === 0) return <div>No bots available</div>
+  // State to manage selected filters
+  const [selectedFilters, setSelectedFilters] = useState([]);
 
-  // Array to hold rows of bots
-  const rows = []
-  // Split bots into rows of 4 bots each
-  for (let i = 0; i < bots.length; i += 4) {
-    rows.push(
-      <div className="row" key={i}>
-        {/* Map through bots in the current row and render each bot */}
-        {bots.slice(i, i + 4).map((bot) => (
+  // Function to handle filter change
+  const handleFilterChange = (filter, isChecked) => {
+    if (isChecked) {
+      setSelectedFilters((prevFilters) => [...prevFilters, filter]);
+    } else {
+      setSelectedFilters((prevFilters) => prevFilters.filter((f) => f !== filter));
+    }
+  };
+
+  // Extract unique bot classes from the bots array
+  const botClasses = [...new Set(bots.map((bot) => bot.bot_class))];
+
+  // Function to filter bots based on selected filters
+  const botMatchesFilters = (bot) => {
+    if (selectedFilters.length === 0) return true;
+    return selectedFilters.includes(bot.bot_class);
+  };
+
+  return (
+    <div className="bot-collection">
+      {/* FilterBar component */}
+      <FilterBar
+        filters={botClasses}
+        selectedFilters={selectedFilters}
+        onFilterChange={handleFilterChange}
+      />
+      {/* Display bots in a single row */}
+      <div className="row">
+        {bots.filter(botMatchesFilters).map((bot) => (
           <div key={bot.id} className="col-sm-3 col-md-3 mb-4">
             <div className="card">
               {/* Link to navigate to the bot's details page */}
@@ -35,11 +57,8 @@ const BotCollection = ({ bots }) => {
           </div>
         ))}
       </div>
-    )
-  }
+    </div>
+  );
+};
 
-  // Render the bot collection
-  return <div className="bot-collection">{rows}</div>
-}
-
-export default BotCollection
+export default BotCollection;
