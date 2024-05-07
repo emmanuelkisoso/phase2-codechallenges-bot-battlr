@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/your-repository-name/static/css/main.e6c13ad2.css",
-    "main.js": "/your-repository-name/static/js/main.ed82253a.js",
-    "static/js/453.52e1f0e5.chunk.js": "/your-repository-name/static/js/453.52e1f0e5.chunk.js",
-    "index.html": "/your-repository-name/index.html",
-    "main.e6c13ad2.css.map": "/your-repository-name/static/css/main.e6c13ad2.css.map",
-    "main.ed82253a.js.map": "/your-repository-name/static/js/main.ed82253a.js.map",
-    "453.52e1f0e5.chunk.js.map": "/your-repository-name/static/js/453.52e1f0e5.chunk.js.map"
+    "main.css": "/phase2-codechallenges-bot-battlr/static/css/main.e6c13ad2.css",
+    "main.js": "/phase2-codechallenges-bot-battlr/static/js/main.34e3e6c9.js",
+    "static/js/453.52e1f0e5.chunk.js": "/phase2-codechallenges-bot-battlr/static/js/453.52e1f0e5.chunk.js",
+    "index.html": "/phase2-codechallenges-bot-battlr/index.html",
+    "main.e6c13ad2.css.map": "/phase2-codechallenges-bot-battlr/static/css/main.e6c13ad2.css.map",
+    "main.34e3e6c9.js.map": "/phase2-codechallenges-bot-battlr/static/js/main.34e3e6c9.js.map",
+    "453.52e1f0e5.chunk.js.map": "/phase2-codechallenges-bot-battlr/static/js/453.52e1f0e5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.ed82253a.js"
+    "static/js/main.34e3e6c9.js"
   ]
 }
