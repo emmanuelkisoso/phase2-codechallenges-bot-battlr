@@ -13,7 +13,7 @@ const BotSpecs = ({ onBotEnlist }) => {
   useEffect(() => {
     const fetchBotDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/bots/${botId}`)
+        const response = await fetch(`https://deployment-of-bot-battlr.onrender.com/bots/${botId}`)
         if (!response.ok) {
           throw new Error('Failed to fetch bot details')
         }
@@ -31,7 +31,7 @@ const BotSpecs = ({ onBotEnlist }) => {
   const handleEnlist = async () => {
     try {
       // Perform enlistment logic, e.g., send a POST request to enlist the bot
-      const response = await fetch('http://localhost:3000/bots', {
+      const response = await fetch('https://deployment-of-bot-battlr.onrender.com/bots', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

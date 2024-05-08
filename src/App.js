@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     const fetchBots = async () => {
       try {
-        const response = await fetch('http://localhost:3000/bots');
+        const response = await fetch('https://deployment-of-bot-battlr.onrender.com/bots');
         if (!response.ok) {
           throw new Error('Failed to fetch bot data');
         }
@@ -60,7 +60,7 @@ function App() {
   }
 
   const handleBotDelete = (bot) => {
-    fetch(`http://localhost:3000/bots/${bot.id}`, {
+    fetch(`https://deployment-of-bot-battlr.onrender.com/bots${bot.id}`, {
       method:'DELETE',
     })
     .then(res => res.json())
