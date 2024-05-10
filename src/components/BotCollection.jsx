@@ -39,7 +39,7 @@ const BotCollection = ({ bots }) => {
           <div key={bot.id} className="col-sm-3 col-md-3 mb-4">
             <div className="card">
               {/* Link to navigate to the bot's details page */}
-              <Link to={`/bots/${bot.id}`} className="card-link">
+              <Link to={`/phase2-codechallenges-bot-battlr/bots/${bot.id}`} className="card-link">
                 <img src={bot.avatar_url} className="card-img-top" alt={bot.name} />
               </Link>
               <div className="card-body">

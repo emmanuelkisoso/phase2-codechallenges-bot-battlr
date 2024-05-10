@@ -76,9 +76,9 @@ function App() {
     <Router>
       <Routes>
         {/* Route to display details of a specific bot */}
-        <Route path="/bots/:botId" element={<BotSpecs onBotEnlist={handleBotEnlist} />} />
+        <Route path="/phase2-codechallenges-bot-battlr/bots/:botId" element={<BotSpecs onBotEnlist={handleBotEnlist} />} />
         {/* Default route to display the main page */}
-        <Route path="/" element={<MainPage />} />
+        <Route path="/phase2-codechallenges-bot-battlr" element={<MainPage />} />
       </Routes>
     </Router>
   )

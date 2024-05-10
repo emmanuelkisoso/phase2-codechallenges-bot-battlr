@@ -63,15 +63,19 @@ const BotSpecs = ({ onBotEnlist }) => {
       {botData && (
         <>
           <p>Bot Name: {botData.name}</p>
+          {botData.avatar_url && <img src={botData.avatar_url} alt="Bot" />}
+          <p>Class: {botData.bot_class}</p>
           <p>Health: {botData.health}</p>
           <p>Damage: {botData.damage}</p>
           <p>Armor: {botData.armor}</p>
+          <p>Created At: {botData.created_at}</p>
+          <p>Updated At: {botData.updated_at}</p>
           {!isEnlisted && ( // Display enlist button only if not already enlisted
             <button onClick={handleEnlist}>Enlist</button>
           )}
         </>
       )}
-      <Link to="/">Back to Bot Collection</Link> {/* Link to navigate back to bot collection */}
+      <Link to="/phase2-codechallenges-bot-battlr">Back to Bot Collection</Link> {/* Link to navigate back to bot collection */}
     </div>
   )
 }
